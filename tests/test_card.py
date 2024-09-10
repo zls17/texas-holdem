@@ -10,6 +10,10 @@ class CardTest(unittest.TestCase):
         card = Card(rank = "2", suit = "Clubs")
         self.assertEqual(card.suit, "Clubs")
 
+    def test_card_knows_its_rank_index(self):
+        card = Card("Jack", "Hearts")
+        self.assertEqual(card.rank_index, 9)
+
     def test_has_string_reprensentation_with_suit_and_rank(self):
         card = Card("7", "Diamonds")
         self.assertEqual(str(card), "7 of Diamonds")
