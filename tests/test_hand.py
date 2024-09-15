@@ -36,40 +36,6 @@ class HandTest(unittest.TestCase):
             [seven_of_diamonds, ace_of_spades]
         )
 
-    def test_figures_out_two_pair_is_best_rank(self):
-        cards = [
-            Card("Ace", "Spades"),
-            Card("Ace", "Clubs"),
-            Card("7", "Hearts"),
-            Card("7", "Diamonds"),
-            Card("8", "Spades")
-        ]
-
-        hand = Hand()
-        hand.add_cards(cards)
-
-        self.assertEqual(
-            hand.best_rank(),
-            "Two Pair"
-        )
-    
-    def test_figures_out_three_of_a_kind(self):
-        cards = [
-            Card("King", "Hearts"),
-            Card("King", "Spades"),
-            Card("King", "Clubs"),
-            Card("7", "Diamonds"),
-            Card("8", "Spades")
-        ]
-    
-        hand = Hand()
-        hand.add_cards(cards)
-
-        self.assertEqual(
-            hand.best_rank(),
-            "Three of a Kind"
-        )
-    
     def test_figures_out_straight(self):
         cards = [
             Card("6", "Hearts"),

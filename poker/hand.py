@@ -1,3 +1,5 @@
+from poker.validators import ThreeOfAKindValidator
+from poker.validators import TwoPairValidator
 from poker.validators import HighCardValidator
 from poker.validators import NoCardsValidator
 from poker.validators import PairValidator
@@ -24,8 +26,8 @@ class Hand():
             ("Full House", self._full_house),
             ("Flush", self._flush),
             ("Straight", self._straight),
-            ("Three of a Kind", self._three_of_a_kind),
-            ("Two Pair", self._two_pair),
+            ("Three of a Kind", ThreeOfAKindValidator(cards = self.cards).is_valid),
+            ("Two Pair", TwoPairValidator(cards = self.cards).is_valid),
             ("Pair", PairValidator(cards = self.cards).is_valid),
             ("High Card", HighCardValidator(cards = self.cards).is_valid),
             ("No Cards", NoCardsValidator(cards = self.cards).is_valid)
@@ -53,7 +55,7 @@ class Hand():
         return len(ranks_with_four_of_a_kind) == 1
 
     def _full_house(self):
-        return self._three_of_a_kind() and PairValidator(cards = self.cards).is_valid()
+        return ThreeOfAKindValidator(cards = self.cards).is_valid() and PairValidator(cards = self.cards).is_valid()
 
     def _flush(self):
         suit_with_count_greater_than_or_equal_to_five = {
@@ -74,14 +76,6 @@ class Hand():
             range(first_rank_index, last_rank_index + 1))
         return rank_indexes == straight_consecutive_indexes 
     
-    def _three_of_a_kind(self):
-        ranks_with_three_of_a_kind = self._ranks_with_count(3)
-        return len(ranks_with_three_of_a_kind) == 1
-            
-    def _two_pair(self):
-        ranks_with_pairs = self._ranks_with_count(2)
-        return len(ranks_with_pairs) == 2
-        
     def _ranks_with_count(self, count):
         return {
             rank: rank_count
