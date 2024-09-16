@@ -36,23 +36,6 @@ class HandTest(unittest.TestCase):
             [seven_of_diamonds, ace_of_spades]
         )
 
-    def test_figures_out_straight(self):
-        cards = [
-            Card("6", "Hearts"),
-            Card("7", "Diamonds"),
-            Card("8", "Clubs"),
-            Card("9", "Spades"),
-            Card("10", "Spades")
-        ]
-
-        hand = Hand()
-        hand.add_cards(cards)
-
-        self.assertEqual(
-            hand.best_rank(),
-            "Straight"
-        )
-
     def test_sort_two_cards_based_on_rank(self):
         
         king_of_diamonds = Card("King", "Diamonds")
