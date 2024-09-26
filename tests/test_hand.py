@@ -91,22 +91,4 @@ class HandTest(unittest.TestCase):
         )
     
 
-    def test_figures_out_royal_flush_is_the_best_rank(self):
-        cards = [
-            Card("10", "Spades"),
-            Card("Jack", "Spades"),
-            Card("Queen", "Spades"),
-            Card("King", "Spades"),
-            Card("Ace", "Spades")
-        ]
-        
-        hand = Hand()
-        hand.add_cards(cards)
-
-        self.assertEqual(
-            hand.best_rank(),
-            "Royal Flush"
-        )        
-
-
 

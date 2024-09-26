@@ -42,11 +42,11 @@ class StraightFlushValidatorTest(unittest.TestCase):
         )     
 
     def test_returns_collection_of_five_consecutive_cards_with_the_same_suit(self):
-        three = Card("3", "Spades"),
-        four  = Card("4", "Spades"),
-        five  = Card("5", "Spades"),
-        six   = Card("6", "Spades"),
-        seven = Card("7", "Spades"),
+        three = Card("3", "Spades")
+        four  = Card("4", "Spades")
+        five  = Card("5", "Spades")
+        six   = Card("6", "Spades")
+        seven = Card("7", "Spades")
 
         cards = [
             three,

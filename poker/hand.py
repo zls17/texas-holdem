@@ -1,3 +1,5 @@
+from poker.validators import RoyalFlushValidator
+from poker.validators import StraightFlushValidator
 from poker.validators import FourOfAKindValidator
 from poker.validators import FullHouseValidator
 from poker.validators import FlushValidator
@@ -25,8 +27,8 @@ class Hand():
     @property
     def _rank_validations_from_best_to_worst(self):
         return (
-            ("Royal Flush", self._royal_flush),
-            ("Straight Flush", self._straight_flush),
+            ("Royal Flush", RoyalFlushValidator(cards = self.cards).is_valid),
+            ("Straight Flush", StraightFlushValidator(cards = self.cards).is_valid),
             ("Four of a Kind", FourOfAKindValidator(cards = self.cards).is_valid),
             ("Full House", FullHouseValidator(cards = self.cards).is_valid),
             ("Flush", FlushValidator(cards = self.cards).is_valid),
@@ -44,12 +46,3 @@ class Hand():
             if validator_func():
                 return rank_name
     
-    def _royal_flush(self):
-        is_straight_flush = self._straight_flush()
-        if not is_straight_flush:
-            return False
-        is_royal = self.cards[-1].rank == "Ace"
-        return is_straight_flush and is_royal
-
-    def _straight_flush(self):
-        return StraightValidator(cards = self.cards).is_valid() and FlushValidator(cards = self.cards).is_valid()
