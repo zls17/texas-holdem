@@ -1,7 +1,7 @@
 class FlushValidator():
     def __init__(self, cards):
         self.cards = cards
-    
+        self.name = "Flush"
     def is_valid(self):
        return len(self._suit_with_count_greater_than_or_equal_to_five) == 1
     

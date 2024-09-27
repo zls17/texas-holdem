@@ -3,6 +3,7 @@ from poker.validators import FiveCardsInARowValidator
 class StraightValidator(FiveCardsInARowValidator):
     def __init__(self, cards):
         self.cards = cards
+        self.name = "Straight"
     
     def is_valid(self):
         if len(self.cards) < 5:
