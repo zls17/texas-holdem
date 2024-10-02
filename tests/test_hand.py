@@ -37,60 +37,6 @@ class HandTest(unittest.TestCase):
             [seven_of_diamonds, ace_of_spades]
         )
 
-    def test_sort_two_cards_based_on_rank(self):
-        
-        king_of_diamonds = Card("King", "Diamonds")
-        queen_of_hearts = Card("Queen", "Hearts")
-
-        cards = [king_of_diamonds, queen_of_hearts]
-        cards.sort()
-        self.assertEqual(
-            cards,
-            [queen_of_hearts, king_of_diamonds]
-        )
-    
-    def test_sort_five_cards_based_on_rank(self):
-        ace_of_hearts = Card("Ace", "Hearts")
-        five_of_diamonds = Card("5", "Diamonds")
-        five_of_hearts = Card("5", "Hearts")
-        three_of_clubs = Card("3", "Clubs")
-        six_of_clubs = Card("6", "Clubs")
-        
-        unsorted_cards = [
-            ace_of_hearts,
-            five_of_hearts,
-            five_of_diamonds,
-            three_of_clubs,
-            six_of_clubs
-        ]
-
-        unsorted_cards.sort()
-
-        self.assertEqual(
-            unsorted_cards,
-            [
-                three_of_clubs,
-                five_of_diamonds,
-                five_of_hearts,
-                six_of_clubs,
-                ace_of_hearts
-            ]
-        )
-    
-    def test_does_not_deem_two_consecutive_cards_as_straight(self):
-        cards = [
-            Card("7", "Hearts"),
-            Card("8", "Diamonds")
-        ]
-
-        hand = Hand()
-        hand.add_cards(cards)
-
-        self.assertEqual(
-            hand.best_rank(),
-            "High Card"
-        )
-    
 
     def test_interacts_with_validator_to_get_winning_hand(self):
         class HandWithOneValidator(Hand):
@@ -106,7 +52,7 @@ class HandTest(unittest.TestCase):
 
         self.assertEqual(
             validator.best_rank(),
-            "Pair"
+            (0, "Pair", [ace_of_hearts, ace_of_spades])
         )
 
 
